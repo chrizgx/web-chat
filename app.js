@@ -35,6 +35,24 @@ app.use('/assets', express.static('./assets'));
 const sessionRouter = require('./routers/session');
 app.use('/', sessionRouter);
 
+app.use(sessionRouter.validateCookie);
+
+app.get('/dashboard', (req, res, next) => {
+    try {
+        res.sendFile('/assets/dashboard/index.html', {root: './'})
+    } catch (e) {
+        console.log(e);
+        res.sendStatus(500);
+    }
+});
+
+app.get('/:notfound', (req, res, next) => {
+    try {
+        res.redirect('/login');
+    } catch(e) {
+        res.sendStatus(500);
+    }
+})
 
 
 app.listen(process.env.PORT || 3000, () => {

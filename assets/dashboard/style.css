@@ -1,0 +1,124 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.no-decoration, .no-decoration:hover, .no-decoration:active .no-decoration:focus {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    color: inherit;
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 700,
+    'GRAD' 0,
+    'opsz' 48;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+}
+
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+
+/* Navigation */
+
+nav {
+    /* background-color: hsl(274deg, 82%, 60%); */
+    background-color: #2192ff;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.nav-brand {
+    font-size: 2rem;
+    align-self:center;
+    color: white;
+}
+
+.more-symbol {
+    color: white;
+}
+
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+
+/* Main Section: Contacts */
+
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact {
+    display: flex;
+    height: 65px;
+    background-color: inherit;
+    padding-left: 10px;
+    align-items: center;
+    border-top: #2192ffff 1px solid;
+}
+
+.contact-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+    background: linear-gradient(140deg, rgba(33, 146, 255, 1) 11%, rgba(56, 229, 77, 1) 130%);
+}
+
+.contact-username {
+    color: black;
+    font-size: 1.6rem;
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+/* Add New Contact Button */
+
+.add-contact {
+    display: inline-block;
+    position:fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #2192ff;
+    border-radius: 100px;
+    width: 67px;
+    height: 67px;
+    transition-duration: 0.2s;
+}
+
+.add-contact:hover {
+    background-color: #fff;
+}
+
+.add-symbol {
+    color: #fff;
+    transform: scale(1.8, 1.8);
+    transition-duration: 0.2s;
+    font-variation-settings: 'wght' 300;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.add-symbol:hover, .add-symbol:active {
+    transform: scale(2, 2);
+    color: #2192ff;
+}
