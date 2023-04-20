@@ -5,6 +5,13 @@ html, body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+/* in order for 'flex-grow: 1' and
+'overflow: auto' inside 'main' element
+ to work*/
+html, body, #app {
+    height: 100%;
+}
+
 .no-decoration, .no-decoration:hover, .no-decoration:active .no-decoration:focus {
     background-color: transparent;
     outline: none;
@@ -37,7 +44,7 @@ html, body {
 nav {
     /* background-color: hsl(274deg, 82%, 60%); */
     background-color: #2192ff;
-    height: 60px;
+    min-height: 60px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -66,15 +73,20 @@ nav {
 main {
     display: flex;
     flex-direction: column;
+    /* The following code will make
+    contacts section SCROLLABLE in
+    case contacts can't fit screen size. */
+    flex-grow: 1;
+    overflow: auto;
 }
 
-.contact {
+.contact, .contact:hover {
     display: flex;
-    height: 65px;
+    border-bottom: #0001 2px solid;
+    min-height: 65px;
     background-color: inherit;
     padding-left: 10px;
     align-items: center;
-    border-top: #2192ffff 1px solid;
 }
 
 .contact-image {
