@@ -35,16 +35,32 @@ app.use('/assets', express.static('./assets'));
 const sessionRouter = require('./routers/session');
 app.use('/', sessionRouter);
 
+// Validate Cookie to prevent unauthorized users
+// from accessing the paths specified below
 app.use(sessionRouter.validateCookie);
 
-app.get('/dashboard', (req, res, next) => {
+
+// Routes for supporting all dashboard backend operations
+const contactsRouter = require('./routers/dashboard');
+app.use('/api', contactsRouter);
+
+app.get('/dashboard', async (req, res, next) => {
     try {
-        res.sendFile('/assets/dashboard/index.html', {root: './'})
+        res.sendFile('/assets/dashboard/index.html', {root: './'});
     } catch (e) {
-        console.log(e);
+        console.error(e);
         res.sendStatus(500);
     }
 });
+
+app.get('/chat', async (req, res, next) => {
+    try {
+        res.sendFile('/assets/chat/index.html', { root: './' });
+    } catch (e) {
+        console.error(e);
+        res.sendStatus(500);
+    }
+})
 
 app.get('/:notfound', (req, res, next) => {
     try {

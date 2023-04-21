@@ -39,7 +39,8 @@ router.get('/login', async (req, res) => {
 })
 
 router.post('/login', async (req, res) => {
-    const { username, password } = req.body;
+    let { username, password } = req.body;
+    username = username.toLowerCase();
     console.log(`New login attempt: ${username}`);
 
     if (username == null || password == null) {
@@ -83,7 +84,8 @@ router.get('/signup', async (req, res) => {
 
 router.post('/signup', async (req, res) => {
     try {
-        const { username, password } = req.body;
+        let { username, password } = req.body;
+        username = username.toLowerCase();
         console.log(`New User registering with username ${username} and password: ${password}`);
 
         if (username == null || password == null || await userManagement.usernameAlreadyExists(username)) {
