@@ -14,8 +14,14 @@ const app = new Vue({
             }
         },
         addContact: async function() {
-            const response = await fetch(`/api/contacts/new/${this.otherUsername}`, {
-                method: "POST"
+            const response = await fetch(`/api/contacts/new`, {
+                method: "POST",
+                body: JSON.stringify({
+                    otherUsername: this.otherUsername
+                }),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                }
             });
             setTimeout(this.update, 2000);
 

@@ -39,11 +39,13 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <input type="text" id="otherUser" v-model="otherUsername">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn" style="background-color: #2192ff; color:white;" data-bs-dismiss="modal" @click="addContact">+ Add Contact</button>
+                        <input type="text" class="no-decoration contact-input" id="otherUser" v-model="otherUsername" placeholder="Type username...">
+                        <button type="button" class="btn" style="background-color: #2192ff; color:white;" data-bs-dismiss="modal" @click="addContact">+</button>
+                        <!-- <div class="modal-buttons-container">
+                            <div class="flex-grow"></div>
+                            <button type="button" class="modal-btn btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="modal-btn btn" style="background-color: #2192ff; color:white;" data-bs-dismiss="modal" @click="addContact">+ Add Contact</button>
+                        </div> -->
                     </div>
                 </div>
             </div>

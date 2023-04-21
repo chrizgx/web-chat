@@ -13,10 +13,10 @@ router.get('/contacts', async (req, res, next) => {
     }
 });
 
-router.post('/contacts/new/:username', async (req, res, next) => {
+router.post('/contacts/new', async (req, res, next) => {
     const myId = req.session.user.id;
-    const otherUsername = req.params.username;
-
+    let {otherUsername} = req.body;
+    otherUsername = otherUsername.toLowerCase();
     if (otherUsername === null) {
         return res.sendStatus(404);
     }
