@@ -23,7 +23,7 @@
             </ul>
         </nav>
         <main>
-            <a v-for="contact in contacts.results" :href="'/chat?id=' + contact.chat_id" class="no-decoration contact">
+            <a v-for="contact in contacts.results" :href="`/chat?id=${contact.chat_id}&user=${contact.id}`" class="no-decoration contact">
                 <div class="contact-image"></div>
                 <div class="contact-username">{{ contact.username }}</div>
             </a>

@@ -44,6 +44,14 @@ app.use(sessionRouter.validateCookie);
 const contactsRouter = require('./routers/dashboard');
 app.use('/api', contactsRouter);
 
+// Routes for supporting chat funcitonality
+const chatRouter = require('./routers/chat');
+app.use('/api', chatRouter);
+
+app.get('/api/id', async (req, res, next) => {
+    return res.json({id: req.session.user.id});
+})
+
 app.get('/dashboard', async (req, res, next) => {
     try {
         res.sendFile('/assets/dashboard/index.html', {root: './'});

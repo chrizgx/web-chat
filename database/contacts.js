@@ -42,7 +42,7 @@ const createChat = async () => {
     try {
         const results = await pool.query(
             'INSERT INTO chats (data) VALUES ($1) RETURNING id;',
-            [{}]
+            [{messages: []}]
         );
         return results.rows[0].id;
     } catch (e) {

@@ -17,31 +17,32 @@
     <div id="app">
         <nav>
             <div class="nav-container">
-                <button class="no-decoration" data-bs-toggle="dropdown"><span class="material-symbols-outlined back-symbol">chevron_left</span></button>
+                <button class="no-decoration" data-bs-toggle="dropdown" @click="back"><span class="material-symbols-outlined back-symbol">chevron_left</span></button>
                 <div class="contact-image"></div>
                 <div class="contact-name-container">
-                    <span class="contact-username">Christos</span>
-                    <span class="contact-last-active">34 min. ago</span>
+                    <span class="contact-username">{{ userInfo.data.username }}</span>
+                    <span class="contact-last-active"><b>null</b> min. ago</span>
                 </div>
             </div>
             <button class="no-decoration"><span class="material-symbols-outlined reload-symbol">sync</span></button>
         </nav>
         <main>
             <!-- First Message shows at the bottom -->
-            <p class="message message-received">Good night bro...</p>
+            <p v-for="message in chat.messages" class="message" v-bind:class="[message.id === myId ? 'message-sent' : 'message-received']">{{ message.message }}</p>
+            <!-- <p class="message message-received">Good night bro...</p>
             <p class="message message-sent">Thanks for asking bro. I really appreciate it</p>
             <p class="message message-sent">Cool</p>
             <p class="message message-received">How about you?</p>
             <p class="message message-received">Fine, thanks</p>
             <p class="message message-sent"><span>How are you?</span></p>
             <p class="message message-received">Hey bro</p>
-            <p class="message message-sent">Aloha</p>
+            <p class="message message-sent">Aloha</p> -->
 
 
         </main>
         <footer>
-            <input type="text" placeholder="Type a message...">
-            <button class="no-decoration send-button"><span class="material-symbols-outlined send-icon">send</span></button>
+            <input type="text" v-model="newMessage" placeholder="Type a message...">
+            <button class="no-decoration send-button" @click="sendMessage"><span class="material-symbols-outlined send-icon">send</span></button>
         </footer>
     </div>
   </body>
