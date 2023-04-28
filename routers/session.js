@@ -14,6 +14,16 @@ router.validateCookie = async (req, res, next) => {
     }
 }
 
+router.activityStatusTracker = async (req, res, next) => {
+    try {
+        userManagement.updateUserStatus(req.session.user.id);
+        next();
+    } catch (e) {
+        console.error(e);
+        next();
+    }
+}
+
 router.get('/', async (req, res) => {
     try {
         res.redirect('/login');

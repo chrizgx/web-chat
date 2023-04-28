@@ -2,7 +2,7 @@ CREATE TABLE "public.users" (
 	"id" serial NOT NULL,
 	"username" varchar(30) NOT NULL,
 	"password" varchar(30) NOT NULL,
-	"last_request" DATE,
+	"last_request" TIMESTAMP,
 	"show_status" BOOLEAN NOT NULL DEFAULT '1',
 	"active" BOOLEAN NOT NULL DEFAULT '1',
 	CONSTRAINT "users_pk" PRIMARY KEY ("id")

@@ -65,9 +65,23 @@ const createUser = async (username, password) => {
     }
 }
 
+const updateUserStatus = async (userId) => {
+    try {
+        const results = await pool.query(
+            'UPDATE users SET last_request = NOW() WHERE id = $1;',
+            [userId]
+        );
+        return true;
+    } catch (e) {
+        console.error(e);
+        return null;;
+    }
+}
+
 module.exports = {
     getUserByUsernameAndPassword,
     validateActiveUser,
     usernameAlreadyExists,
-    createUser
+    createUser,
+    updateUserStatus
 };

@@ -39,6 +39,8 @@ app.use('/', sessionRouter);
 // from accessing the paths specified below
 app.use(sessionRouter.validateCookie);
 
+// Update 'last_request' value from database
+app.use(sessionRouter.activityStatusTracker);
 
 // Routes for supporting all dashboard backend operations
 const contactsRouter = require('./routers/dashboard');
