@@ -9,6 +9,14 @@ const app = new Vue({
         newMessage: '',
         updating: true,
     },
+    computed: {
+        lastMessage: function() {
+            if (this.chat.messages.length) {
+                return this.chat.messages[0].message;
+            }
+            return '!!null';
+        }
+    },
     methods: {
         setup: async function() {
             const urlParams = new URLSearchParams(window.location.search);
@@ -23,14 +31,24 @@ const app = new Vue({
             this.update();
         },
         update: async function() {
-            const response = await fetch(`/api/chat/${this.chatId}`);
+            const response = await fetch(`/api/chat/${this.chatId}`, {
+                method: "POST",
+                body: JSON.stringify({
+                    lastMessage: this.lastMessage
+                }),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8'
+                }
+            });
             if (response.ok) {
                 const jsonResponse = await response.json();
                 this.chat = jsonResponse;
                 console.log('updated contacts ...');
+            } else {
+                console.log(response.status);
             }
             if (this.updating) {
-                return setTimeout(this.update, 100);
+                return setTimeout(this.update, 1000);
             }
         },
         sendMessage: async function() {
