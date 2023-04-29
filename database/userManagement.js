@@ -78,10 +78,25 @@ const updateUserStatus = async (userId) => {
     }
 }
 
+const getUserStatus = async (userId) => {
+    try {
+        const results = await pool.query(
+            'SELECT last_request FROM users WHERE id = $1;',
+            [userId]
+        );
+
+        return results.rowCount != 0 ? results.rows[0] : {last_request: null};
+    } catch (e) {
+        console.error(e);
+        return null;
+    }
+}
+
 module.exports = {
     getUserByUsernameAndPassword,
     validateActiveUser,
     usernameAlreadyExists,
     createUser,
-    updateUserStatus
+    updateUserStatus,
+    getUserStatus
 };

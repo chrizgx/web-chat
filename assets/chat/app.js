@@ -5,6 +5,8 @@ const app = new Vue({
         userId: 0,
         chatId: 0,
         userInfo: {},
+        lastActive: null,
+        contactActive: false,
         chat: {messages: []},
         newMessage: '',
         updating: true,
@@ -29,6 +31,8 @@ const app = new Vue({
             const getUserInfoJson = await getUserInfo.json();
             this.userInfo = getUserInfoJson;
             this.update();
+            this.updateLastActive();
+            setInterval(this.updateLastActive, 2000);
         },
         update: async function() {
             const response = await fetch(`/api/chat/${this.chatId}`, {
@@ -49,6 +53,14 @@ const app = new Vue({
             }
             if (this.updating) {
                 return setTimeout(this.update, 1000);
+            }
+        },
+        updateLastActive: async function() {
+            const response = await fetch(`/api/chat/last-active/${this.userId}`);
+            if (response.ok) {
+                const jsonResponse = await response.json();
+                this.lastActive = jsonResponse.lastActive;
+                this.contactActive = jsonResponse.active;
             }
         },
         sendMessage: async function() {

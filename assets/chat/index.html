@@ -21,7 +21,7 @@
                 <div class="contact-image"></div>
                 <div class="contact-name-container">
                     <span class="contact-username">{{ userInfo.data.username }}</span>
-                    <span class="contact-last-active"><b>null</b> min. ago</span>
+                    <span class="contact-last-active"><span v-bind:class="[contactActive ? 'contact-active' : 'none']"></span>{{ lastActive }}</span>
                 </div>
             </div>
             <button class="no-decoration"><span class="material-symbols-outlined reload-symbol">sync</span></button>

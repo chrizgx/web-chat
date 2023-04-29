@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const chats = require('../database/chats');
+const userManagement = require('../database/userManagement');
 
 router.cache = {};
 
@@ -63,6 +64,43 @@ router.post('/chat/:id/new', async (req, res, next) => {
         router.cache[chatId] = message;
 
         return res.sendStatus(200);
+    } catch (e) {
+        console.error(e);
+        res.sendStatus(500);
+    }
+});
+
+router.get('/chat/last-active/:id', async (req, res, next) => {
+    try {
+        const userId = req.params.id;
+        const data = await userManagement.getUserStatus(userId);
+
+        if (!data) {
+            return res.sendStatus(404);
+        }
+
+        const currentDate = Date.now();
+        const lastRequest = data.last_request;
+        
+        let timeElapsed = currentDate - lastRequest;
+        timeElapsed = Math.floor(timeElapsed / 1000);
+
+        let message = '';
+        let active = false;
+
+        if (timeElapsed < 60) {
+            // message = `${timeElapsed} seconds ago`;
+            message = 'Active now';
+            active = true;
+        } else if (timeElapsed < 3600){
+            message = `${Math.floor(timeElapsed / 60)} ${Math.floor(timeElapsed / 60) == 1 ? 'minute' : 'minutes'} ago`;
+        } else if (timeElapsed < 86400) {
+            message = `${Math.floor(timeElapsed / 3600)} ${timeElapsed >= 3600*2 ? 'hours' : 'hour'} ago`;
+        } else {
+            message = null;
+        }
+
+        return res.json({lastActive: message, active: active});
     } catch (e) {
         console.error(e);
         res.sendStatus(500);

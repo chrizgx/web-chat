@@ -104,6 +104,15 @@ nav {
     margin-bottom: 0;
 }
 
+.contact-active {
+    display: inline-block;
+    min-height: 10px;
+    min-width: 10px;
+    background-color: rgba(56, 229, 77, 1);
+    border-radius: 100%;
+    margin-right: 4px;
+}
+
 .contact-last-active {
     color: white;
     font-weight: normal;
