@@ -17,7 +17,7 @@ const getChat = async (id) => {
 const updateChat = async (data, id) => {
     try {
         const results = await pool.query(
-            'UPDATE chats SET data = $1 WHERE id = $2;',
+            'UPDATE chats SET data = $1, last_message_date = NOW() WHERE id = $2;',
             [data, id]
         );
         

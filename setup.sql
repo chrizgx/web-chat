@@ -16,7 +16,7 @@ CREATE TABLE "public.chats" (
 	"id" serial NOT NULL,
 	"data" json NOT NULL,
 	"last_message" varchar(255),
-	"last_message_date" DATE,
+	"last_message_date" TIMESTAMP,
 	CONSTRAINT "chats_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE

@@ -15,7 +15,9 @@ const getUserContacts = async (id) => {
                 ON users.id = users_chats.other_user_id
             JOIN chats
                 ON chats.id = users_chats.chat_id
-            WHERE users_chats.user_id = $1;`,
+            WHERE users_chats.user_id = $1
+            ORDER BY chats.last_message_date DESC
+            NULLS LAST;`,
             [id]
         );
         return results.rows;
