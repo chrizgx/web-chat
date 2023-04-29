@@ -16,7 +16,7 @@ const app = new Vue({
             if (this.chat.messages.length) {
                 return this.chat.messages[0].message;
             }
-            return '!!null';
+            return null;
         }
     },
     methods: {

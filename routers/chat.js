@@ -36,7 +36,9 @@ router.post('/chat/:id', async (req, res, next) => {
 
         if (!router.cache[chatId]) {
             console.log("creating cache record");
-            router.cache[chatId] = chat.data.messages[0].message;
+            //                     In case conversation is empty, save null status and prevent
+            //                     multiple requests until a message is sent
+            router.cache[chatId] = chat.data.messages.length !== 0 ? chat.data.messages[0].message : null;
         }
 
         return res.status(200).json({ messages: chat.data.messages });
