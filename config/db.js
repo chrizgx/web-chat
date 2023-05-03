@@ -9,6 +9,6 @@ const pool = new Pool({
 });
 
 console.log("SUCCESS");
-console.log(process.env.USER, process.env.PASSWORD, process.env.HOST, process.env.DB, process.env.PORT);
+console.log(process.env.USER, process.env.PASSWORD, process.env.HOST, process.env.DB, process.env.DB_PORT);
 
 module.exports = pool;
